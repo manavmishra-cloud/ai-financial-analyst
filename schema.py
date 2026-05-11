@@ -9,9 +9,13 @@ Strategy:
      which role. This catches weird names like "p", "X1", or non-English.
   3. Always return a dict that callers can override (the UI exposes this).
 """
+import os
 import re
 import json
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 SYNONYMS = {
@@ -43,7 +47,7 @@ SYNONYMS = {
 }
 
 CRITICAL_ROLES = ["price", "volume"]
-OLLAMA_URL = "http://localhost:11434"
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 PREFERRED_MODELS = ["qwen3:30b", "qwen3", "llama3", "qwen2.5", "mistral"]
 
 

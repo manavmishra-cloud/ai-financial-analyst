@@ -10,7 +10,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-OLLAMA_URL = "http://localhost:11434"
+# Override with OLLAMA_URL in .env to point at a remote Ollama (e.g. via SSH tunnel).
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 PREFERRED_MODELS = ["qwen3:30b", "qwen3", "llama3", "qwen2.5", "mistral"]
 
 

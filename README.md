@@ -3,15 +3,27 @@
 Upload financial data (CSV / Excel / JSON) and get an instant, AI-powered report:
 insights, risk analysis, trend, prediction, and a BUY / HOLD / SELL recommendation.
 
+## Screenshots
+
+**Dashboard with auto-detected schema and key metrics**
+![Dashboard](screenshots/dashboard.png)
+
+**Price chart with MA20 / MA50 overlays**
+![Price chart](screenshots/price-chart.png)
+
+**Structured AI analysis — Insights, Risk, Trend, Prediction, Recommendation**
+![AI analysis](screenshots/ai-analysis.png)
+
 ## Features
 
 - Loads CSV, Excel, and JSON financial data
-- Auto-detects price and volume columns
+- **Auto-detects column roles** (price, volume, timestamp, ticker, bid, ask, side) using a synonym table + LLM fallback — works on any naming convention
 - Computes price change %, volatility, MA20/MA50 trend, RSI(14)
 - AI analysis with a 3-tier engine priority:
   1. Local Ollama (qwen3 / llama3) — keeps your data on-machine
   2. Anthropic Claude API — if `ANTHROPIC_API_KEY` is set
   3. Rule-based fallback — works with no AI at all
+- `OLLAMA_URL` env var lets you point at a remote Ollama via SSH tunnel (e.g. a GPU box)
 - Interactive Streamlit dashboard with price chart + moving averages
 - One-click PDF report export
 
