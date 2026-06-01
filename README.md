@@ -1,76 +1,80 @@
-# AI Financial Analyst
+```markdown
+  # 📈 ai-financial-analyst
 
-Upload financial data (CSV / Excel / JSON) and get an instant, AI-powered report:
-insights, risk analysis, trend, prediction, and a BUY / HOLD / SELL recommendation.
+  > Streamlit dashboard for AI-augmented financial data analysis. Combines traditional quantitative analytics with LLM-generated narrative insights to surface risk concentrations, performance
+  attribution, and trading anomalies.
 
-## Screenshots
+  ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
+  ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+  ![pandas](https://img.shields.io/badge/pandas-150458?logo=pandas&logoColor=white)
+  ![Ollama](https://img.shields.io/badge/Ollama-000000?logo=ollama&logoColor=white)
+  ![License](https://img.shields.io/badge/license-MIT-green)
 
-**Dashboard with auto-detected schema and key metrics**
-![Dashboard](screenshots/dashboard.png)
+  ## What it does
 
-**Price chart with MA20 / MA50 overlays**
-![Price chart](screenshots/price-chart.png)
+  Upload financial data (broker statements, P&L reports, market data CSVs) and get a structured analytical breakdown alongside LLM-generated natural-language commentary. The goal is to surface
+  insights that traditional dashboards miss — concentration risks, hidden correlations, anomalous trading patterns — without requiring you to write any analytical code.
 
-**Structured AI analysis — Insights, Risk, Trend, Prediction, Recommendation**
-![AI analysis](screenshots/ai-analysis.png)
+  ## Demo
 
-## Features
+  [FILL: add screenshot or GIF of dashboard here. Save as docs/demo.png in the repo, then:]
 
-- Loads CSV, Excel, and JSON financial data
-- **Auto-detects column roles** (price, volume, timestamp, ticker, bid, ask, side) using a synonym table + LLM fallback — works on any naming convention
-- Computes price change %, volatility, MA20/MA50 trend, RSI(14)
-- AI analysis with a 3-tier engine priority:
-  1. Local Ollama (qwen3 / llama3) — keeps your data on-machine
-  2. Anthropic Claude API — if `ANTHROPIC_API_KEY` is set
-  3. Rule-based fallback — works with no AI at all
-- `OLLAMA_URL` env var lets you point at a remote Ollama via SSH tunnel (e.g. a GPU box)
-- Interactive Streamlit dashboard with price chart + moving averages
-- One-click PDF report export
+  docs/demo.png
 
-## Tech stack
+  ## Features
 
-Python · pandas · numpy · matplotlib · Streamlit · fpdf2 · Ollama · Anthropic SDK
+  - 📊 **Automatic statistical profiling** — distribution analysis, correlation matrices, anomaly detection
+  - 🤖 **LLM commentary layer** — natural-language summaries of what the numbers actually show
+  - ⚠️  **Risk assessment** — concentration risk, drawdown analysis, regime classification
+  - 📈 **Trend detection** — multi-timeframe momentum and mean-reversion signals
+  - 💡 **Recommendation engine** — actionable insights synthesized from quantitative signals
+  - 📁 **Multi-format input** — CSV, Excel, JSON support
 
-## Setup
+  ## Quick start
 
-```bash
-git clone https://github.com/YOURNAME/financial-analyst.git
-cd financial-analyst
+  ```bash
+  git clone https://github.com/manavmishra-cloud/ai-financial-analyst.git
+  cd ai-financial-analyst
+  pip install -r requirements.txt
 
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+  # Pull the LLM model
+  ollama pull llama3.2:3b
 
-cp .env.example .env       # add ANTHROPIC_API_KEY if you want cloud fallback
-```
+  # Run the dashboard
+  streamlit run app.py
 
-## Run
+  Open the URL Streamlit gives you (typically http://localhost:8501), upload your financial CSV, and explore the analyses.
 
-```bash
-source venv/bin/activate
-streamlit run app.py
-```
+  Sample analyses
 
-Then open <http://localhost:8501> and upload a file from `data/`.
+  [FILL: list 3-5 specific analysis types your tool actually performs. Examples:]
 
-## Project structure
+  - Position concentration: Flags portfolios with >25% allocation to a single asset or sector
+  - Drawdown analysis: Identifies max drawdown periods and recovery times
+  - Correlation breakdown: Surfaces unexpected correlations across holdings
+  - Win/loss attribution: Decomposes P&L by strategy, timeframe, or asset class
+  - Regime detection: Classifies market conditions and flags allocation mismatches
 
-```
-financial_analyst/
-├── app.py            Streamlit dashboard (entry point)
-├── extractor.py      File loaders (CSV / Excel / JSON)
-├── processor.py      Ratios, trend, RSI
-├── analyzer.py       LLM analysis with multi-engine fallback
-├── reporter.py       PDF report generation
-├── requirements.txt  Pinned dependencies
-├── .env.example      Template for API keys
-├── data/             Input files (gitignored)
-├── output/           Generated PDF reports (gitignored)
-└── screenshots/      Dashboard screenshots for the README
-```
+  Tech stack
 
-## Notes
+  - Language: Python 3.10+
+  - UI: Streamlit
+  - Data: pandas, scikit-learn for statistical processing
+  - LLM: Ollama (local inference)
+  - Storage: SQLite (optional, for persistent analysis history)
 
-- `data/`, `output/`, and `.env` are gitignored — never commit proprietary
-  trading data or API keys.
-- For a public demo, use a public dataset (e.g. yfinance) rather than firm data.
+  Roadmap
+
+  - [ ] Multi-account portfolio aggregation
+  - [ ] Real-time data integration via broker APIs (Zerodha Kite, Upstox)
+  - [ ] Persistent analysis history with snapshot comparison
+  - [ ] Export to PDF / Excel reports
+  - [ ] Multi-asset class support (equities, options, futures, crypto)
+
+  License
+
+  MIT
+
+  Contact
+
+  Manav Mishra · LinkedIn · manavmishra260205@gmail.com
